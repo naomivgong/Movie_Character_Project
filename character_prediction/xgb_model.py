@@ -5,7 +5,6 @@ import numpy as np
 
 def train_xgb(X_train, y_train, X_test, y_test):
     try:
-        print("XGBoost training started")
         print(f"Training data shape: {X_train.shape}")
         print(f"Number of classes: {len(np.unique(y_train))}")
         
@@ -16,16 +15,15 @@ def train_xgb(X_train, y_train, X_test, y_test):
             
         # Initialize model with more conservative parameters
         xgb = XGBClassifier(
-            learning_rate=0.3,  # Reduced from 0.3
-            max_depth=11,        # Reduced from 11
-            n_estimators=170,   # Reduced from 170 
+            learning_rate=0.3,  
+            max_depth=11,        
+            n_estimators=170,   
         )
         
         xgb.fit(X_train, y_train)
         
         predictions = xgb.predict(X_test)
         acc = accuracy_score(y_test, predictions)
-        print(f"XGB accuracy: {acc:.4f}")
         
         return xgb
         
@@ -36,7 +34,6 @@ def train_xgb(X_train, y_train, X_test, y_test):
 testing_xgb = True
 
 def test_xgb(X,y):
-    print("TESTING XGBOOST")
     param_grid_xgb = {
         "n_estimators" : [100, 150, 170],
         "max_depth": [11, 12],

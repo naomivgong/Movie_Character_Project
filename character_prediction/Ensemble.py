@@ -11,11 +11,10 @@ X_train, X_test, y_train, y_test, label_encoder, _ = load_movie_data(
     "playback",
     max_features=1000
 )
-print("Data loaded")
 # === Train Models ===
 # Choose which model you want:
 ensemble_accs = []
-for i in range(10):
+for i in range(3):
     use_rf = False
     if use_rf:
         base_model = train_rf(X_train, y_train, X_test, y_test)
